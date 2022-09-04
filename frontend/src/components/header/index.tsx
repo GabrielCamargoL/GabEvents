@@ -27,7 +27,7 @@ export function Header() {
 
           <LinksContainer>
             <NavbarLink to="#home" onClick={e => handleClick(e)}>HOME</NavbarLink>
-            <NavbarLink to="#aboutMe" onClick={e => handleClick(e)}>SHOWS</NavbarLink>
+            <NavbarLink to="#featuredShows" onClick={e => handleClick(e)}>SHOWS</NavbarLink>
             <NavbarLink to="#projects" onClick={e => handleClick(e)}>AGENDA</NavbarLink>
             <NavbarLink to="#contact" onClick={e => handleClick(e)}>CONTATO</NavbarLink>
 
@@ -39,7 +39,7 @@ export function Header() {
         {extendNavbar && (
           <NavbarExtendedContainer style={mountedStyle}>
             <NavbarLinkExtended to="#home" onClick={e => handleClick(e)}>HOME</NavbarLinkExtended>
-            <NavbarLinkExtended to="#aboutMe" onClick={e => handleClick(e)}>SHOWS</NavbarLinkExtended>
+            <NavbarLinkExtended to="#featuredShows" onClick={e => handleClick(e)}>SHOWS</NavbarLinkExtended>
             <NavbarLinkExtended to="#projects" onClick={e => handleClick(e)}>AGENDA</NavbarLinkExtended>
             <NavbarLinkExtended to="#contact" onClick={e => handleClick(e)}>CONTATO</NavbarLinkExtended>
             <ButtonLogin onClick={handleLogin}>LOGIN</ButtonLogin>

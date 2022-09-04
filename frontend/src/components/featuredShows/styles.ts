@@ -29,17 +29,20 @@ export const Container = styled.div`
 export const CarouselShows = styled.div`
   margin: 0 auto;
   padding: 3rem 0rem 0rem;
+
+  .none {
+    display: none;
+  }
 `;
 
 export const Card = styled.div`
   margin-top: 2rem;
   margin-right: 10px;
   max-width: 370px;
-  min-width: 370px;
   max-height: 650px;
 
   @media (max-width: 450px) {
-    width: 300px;
+    width: 280px;
   }
 
   display: flex;
@@ -48,30 +51,11 @@ export const Card = styled.div`
 
   div {
     &.card-texts-container {
-      padding: 0.5rem 1.5rem 1.5rem;
+      padding: 0.5rem 0rem 1.5rem;
       display: flex;
       justify-content: flex-start;
       align-items: flex-start;
       flex-direction: column;
-
-    }
-
-    &.card-links-container {
-      padding: 0.5rem 1.5rem 1.5rem;
-      margin-top: 1.5rem;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-direction: row;
-      justify-self: flex-end;
-      margin-top: auto;
-    }
-
-    img {
-      height: 20px;
-      width: 20px;
-      margin: 0 5px 0 0;
     }
   }
   
@@ -80,24 +64,27 @@ export const Card = styled.div`
     width: 100%;
     height: 370px;
 
-    @media (max-width: 370px) {
-      height: 150px;
+    @media (max-width: 450px) {
+      height: 280px;
     }
   }
 
   p {
     margin: 0.5rem 0;
     font-size: 1rem;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
     
     &.title {
-      font-size: 1.5rem;
-      align-self: center;
+      font-size: 1rem;
+      align-self: start;
       color: ${props => props.theme.colors.dark};
     }
 
-    &.techs {
+    &.hashtags {
+      align-self: start;
+      font-size: 1rem;
+      font-style: italic;
       color: ${props => props.theme.colors.lightRed};
     }
   }

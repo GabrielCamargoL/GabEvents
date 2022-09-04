@@ -3,99 +3,31 @@ import Carousel from 'react-multi-carousel';
 
 import { Card, CarouselShows, Container } from "./styles";
 
-import Show1 from '../../assets/ShowsSamples/Show1.svg';
-import Show2 from '../../assets/ShowsSamples/Show2.svg';
-import Show3 from '../../assets/ShowsSamples/Show3.svg';
-import Show4 from '../../assets/ShowsSamples/Show4.svg';
-import Show5 from '../../assets/ShowsSamples/Show5.svg';
+import { showsList } from '../../utils/showsSamples';
+import { responsive } from '../../utils/breakpointsCarousel';
 
 export function FeaturedShows() {
-  const [shows, setShows] = useState([{
-    'imgSrc': Show1,
-    'title': 'Lorem Ipsum Amet',
-    'hashtags': ['#music', '#concert', '#music', '#concert', '#conference', '#london', '#event', '#artist', '#dj', '#soundtrack', '#dance']
-  }, {
-    'imgSrc': Show2,
-    'title': 'Lorem Ipsum Amet',
-    'hashtags': ['#music', '#concert', '#music', '#concert', '#conference', '#london', '#event', '#artist', '#dj', '#soundtrack', '#dance']
-  }, {
-    'imgSrc': Show3,
-    'title': 'Lorem Ipsum Amet',
-    'hashtags': ['#music', '#concert', '#music', '#concert', '#conference', '#london', '#event', '#artist', '#dj', '#soundtrack', '#dance']
-  }, {
-    'imgSrc': Show4,
-    'title': 'Lorem Ipsum Amet',
-    'hashtags': ['#music', '#concert', '#music', '#concert', '#conference', '#london', '#event', '#artist', '#dj', '#soundtrack', '#dance']
-  }, {
-    'imgSrc': Show5,
-    'title': 'Lorem Ipsum Amet',
-    'hashtags': ['#music', '#concert', '#music', '#concert', '#conference', '#london', '#event', '#artist', '#dj', '#soundtrack', '#dance']
-  }, {
-    'imgSrc': Show5,
-    'title': 'Lorem Ipsum Amet',
-    'hashtags': ['#music', '#concert', '#music', '#concert', '#conference', '#london', '#event', '#artist', '#dj', '#soundtrack', '#dance']
-  }, {
-    'imgSrc': Show2,
-    'title': 'Lorem Ipsum Amet',
-    'hashtags': ['#music', '#concert', '#music', '#concert', '#conference', '#london', '#event', '#artist', '#dj', '#soundtrack', '#dance']
-  }, {
-    'imgSrc': Show5,
-    'title': 'Lorem Ipsum Amet',
-    'hashtags': ['#music', '#concert', '#music', '#concert', '#conference', '#london', '#event', '#artist', '#dj', '#soundtrack', '#dance']
-  }, {
-    'imgSrc': Show3,
-    'title': 'Lorem Ipsum Amet',
-    'hashtags': ['#music', '#concert', '#music', '#concert', '#conference', '#london', '#event', '#artist', '#dj', '#soundtrack', '#dance']
-  },]);
-
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 4,
-      slidesToSlide: 1,
-      partialVisibilityGutter: 40
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 700 },
-      items: 3,
-      slidesToSlide: 1,
-      partialVisibilityGutter: 30
-    },
-    teste: {
-      breakpoint: { max: 700, min: 465 },
-      items: 10,
-      slidesToSlide: 1,
-      partialVisibilityGutter: 30
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-      slidesToSlide: 1,
-      partialVisibilityGutter: 30
-    }
-  };
+  const [shows, setShows] = useState(showsList);
 
   return (
     <Container>
-      <h2>Shows em destaque!</h2>
+      <h2 id='featuredShows'>Shows em destaque!</h2>
 
       <CarouselShows>
         <Carousel
-          swipeable={false}
-          draggable={false}
+          rewind={true}
+          swipeable={true}
+          draggable={true}
           showDots={true}
           responsive={responsive}
-          ssr={true} // means to render carousel on server-side.
+          ssr={true}
           infinite={true}
-          // autoPlay={responsive !== "mobile" ? true : false}
-          // autoPlaySpeed={5000}
+          autoPlay={true}
+          autoPlaySpeed={5000}
           keyBoardControl={true}
           customTransition="all .5"
-          transitionDuration={500}
-          containerClass="carousel-container"
-          dotListClass="custom-dot-list-style"
-          itemClass="carousel-item-padding-40-px"
-          centerMode={false}
+          transitionDuration={1000}
+          dotListClass="none"
           partialVisible
         >
           {shows.map((show) => {
@@ -105,7 +37,7 @@ export function FeaturedShows() {
 
                 <div className='card-texts-container'>
                   <p className='title'>{show.title}</p>
-                  <p className='techs'>{show.hashtags.map((hashtag) => {
+                  <p className='hashtags'>{show.hashtags.map((hashtag) => {
                     if (hashtag === show.hashtags[show.hashtags.length - 1]) {
                       return hashtag;
                     } else {
