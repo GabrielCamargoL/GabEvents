@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Carousel from 'react-multi-carousel';
 
 import { Card, CarouselShows, Container } from "./styles";
@@ -7,7 +6,6 @@ import { showsList } from '../../utils/showsSamples';
 import { responsive } from '../../utils/breakpointsCarousel';
 
 export function FeaturedShows() {
-  const [shows, setShows] = useState(showsList);
 
   return (
     <Container>
@@ -30,7 +28,7 @@ export function FeaturedShows() {
           dotListClass="none"
           partialVisible
         >
-          {shows.map((show) => {
+          {showsList.map((show) => {
             return (
               <Card>
                 <img src={show.imgSrc} alt="" />
