@@ -1,1 +1,1 @@
-web: yarn && tsc && node ./build/index.js
+web: yarn build
