@@ -1,1 +1,1 @@
-web: cd backend && yarn && yarn add global typescript && tsc && node ./build/index.js
+web: yarn && tsc && node ./build/index.js
