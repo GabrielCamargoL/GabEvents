@@ -4,6 +4,6 @@
   "main": "backend/index.js",
   "license": "MIT",
   "scripts": {
-    "build": "cd backend && yarn"
+    "build": "cd backend && yarn && tsc && node ./build/index.js"
   }
 }

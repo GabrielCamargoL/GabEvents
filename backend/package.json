@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "npx nodemon --exec ts-node --files src/index.ts",
-    "build": "cd backend && yarn"
+    "build": "cd backend && yarn && tsc && node ./build/src/index.ts"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

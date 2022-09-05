@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 export const ShowSchema = new mongoose.Schema({
   title: {
@@ -10,7 +10,7 @@ export const ShowSchema = new mongoose.Schema({
     requered: true,
   },
   hashtags: {
-    type: Array<string>,
+    type: Schema.Types.Array,
     required: true,
   },
   price: {
