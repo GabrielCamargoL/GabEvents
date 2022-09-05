@@ -4,15 +4,15 @@ import { ButtonLogin, Container, Content, LinksContainer, NavbarExtendedContaine
 
 const mountedStyle = { animation: "inAnimation 0.6s ease-in" };
 
-export function Header() {
+interface HeaderProps {
+  onOpenLoginModal: () => void;
+}
+
+export function Header({ onOpenLoginModal }: HeaderProps) {
   const [extendNavbar, setExtendNavbar] = useState(false);
 
   function handleClick(e: any) {
     e.querySelector().scrollIntoView();
-  }
-
-  async function handleLogin() {
-
   }
 
   return (
@@ -31,7 +31,7 @@ export function Header() {
             <NavbarLink to="#projects" onClick={e => handleClick(e)}>AGENDA</NavbarLink>
             <NavbarLink to="#contact" onClick={e => handleClick(e)}>CONTATO</NavbarLink>
 
-            <ButtonLogin onClick={handleLogin}>LOGIN</ButtonLogin>
+            <ButtonLogin type="button" onClick={onOpenLoginModal}>LOGIN</ButtonLogin>
           </LinksContainer>
         </Content>
 
@@ -42,7 +42,7 @@ export function Header() {
             <NavbarLinkExtended to="#featuredShows" onClick={e => handleClick(e)}>SHOWS</NavbarLinkExtended>
             <NavbarLinkExtended to="#projects" onClick={e => handleClick(e)}>AGENDA</NavbarLinkExtended>
             <NavbarLinkExtended to="#contact" onClick={e => handleClick(e)}>CONTATO</NavbarLinkExtended>
-            <ButtonLogin onClick={handleLogin}>LOGIN</ButtonLogin>
+            <ButtonLogin type="button" onClick={onOpenLoginModal}>LOGIN</ButtonLogin>
           </NavbarExtendedContainer>
         )}
 

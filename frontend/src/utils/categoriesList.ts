@@ -9,7 +9,7 @@ export const categoriesList = [
     'imgSrc': pop,
     'title': 'Pop',
     'description': 'Duis nec sodales nibh. \nProin lectus tortor, rutrum \nvel vulputate vitae',
-    'backgroundColor': 'rgba(219, 132, 29, 0.1)'
+    'backgroundColor': 'rgba(219, 132, 29, 0.1)',
   },
   {
     'imgSrc': Folk,
@@ -21,7 +21,8 @@ export const categoriesList = [
     'imgSrc': instrumental,
     'title': 'Instrumental',
     'description': 'Duis nec sodales nibh. \nProin lectus tortor, rutrum \nvel vulputate vitae',
-    'backgroundColor': '#381DDB'
+    'backgroundColor': '#381DDB',
+    'color': '#fff'
   },
   {
     'imgSrc': Rock,

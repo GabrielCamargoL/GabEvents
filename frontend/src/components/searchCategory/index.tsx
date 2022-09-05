@@ -5,13 +5,13 @@ import { categoriesList } from '../../utils/categoriesList';
 export function SearchCategory() {
   return (
     <>
-
       <Container>
         <h2 id='searchCategory'>Procure por categoria</h2>
+
         <CategoriesList>
           {categoriesList.map((category) => {
             return (
-              <Card style={{ backgroundColor: category.backgroundColor }} >
+              <Card style={{ backgroundColor: category.backgroundColor, color: category.color }} >
                 <img src={category.imgSrc} alt="" />
 
                 <div className='card-texts-container'>

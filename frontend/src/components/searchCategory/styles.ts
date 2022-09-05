@@ -27,32 +27,9 @@ export const Container = styled.div`
 export const CategoriesList = styled.div`
   margin: 3rem 1rem 0rem;
 
-  display: grid;
-  grid-template-columns: repeat(5,1fr);
-
-
-  @media (max-width: 1800px) {
-    grid-template-columns: repeat(4,1fr);
-    grid-template-columns: 2;
-  }
-
-  @media (max-width: 1450px) {
-    grid-template-columns: repeat(3,1fr);
-    grid-template-columns: 2;
-  }
-
-  @media (max-width: 1100px) {
-    grid-template-columns: repeat(2,1fr);
-    grid-template-columns: 3;
-  }
-
-  @media (max-width: 730px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 export const Card = styled.div`
