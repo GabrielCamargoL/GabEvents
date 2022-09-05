@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "npx nodemon --exec ts-node --files src/index.ts",
-    "build": "yarn && ./node_modules/typescript/bin/tsc && node ./build/index.js"
+    "build": "yarn && npx tsc && node ./build/index.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

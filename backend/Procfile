@@ -1,1 +1,1 @@
-web: cd backend && yarn && ./node_modules/typescript/bin/tsc && node ./build/index.js
+web: cd backend && yarn && npx tsc && node ./build/index.js
