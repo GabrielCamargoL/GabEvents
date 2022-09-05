@@ -1,1 +1,1 @@
-dev: cd backend && yarn && yarn dev
+web: cd backend && yarn && ./node_modules/typescript/bin/tsc && node ./build/index.js
