@@ -1,6 +1,15 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { model, Schema, Document } from "mongoose";
 
-export const ShowSchema = new mongoose.Schema({
+export interface IShow extends Document {
+  title: string;
+  description: string;
+  hashtags: Schema.Types.Array;
+  price: number;
+  imgSrc: string;
+  created_at: Date;
+}
+
+export const ShowSchema: Schema = new mongoose.Schema<IShow>({
   title: {
     type: String,
     required: true,
@@ -26,3 +35,7 @@ export const ShowSchema = new mongoose.Schema({
     default: Date.now(),
   },
 });
+
+export const Show = model('Show', ShowSchema);
+
+export default Show;
