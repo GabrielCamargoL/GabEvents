@@ -22,10 +22,19 @@ export const Container = styled.header`
 
   p {
     margin-top: 50px;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-family: ${props => props.theme.fonts.body} sans-serif;
     font-style: normal;
     font-weight: 400;
+    text-align: center;
+    color: ${props => props.theme.colors.light}
+  }
+
+  span {
+    font-size: 1.2rem;
+    font-family: ${props => props.theme.fonts.Headline} sans-serif;
+    font-style: normal;
+    font-weight: 500;
     text-align: center;
     color: ${props => props.theme.colors.light}
   }

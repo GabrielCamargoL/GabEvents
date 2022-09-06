@@ -11,6 +11,8 @@ interface HeaderProps {
 export function Header({ onOpenLoginModal }: HeaderProps) {
   const [extendNavbar, setExtendNavbar] = useState(false);
 
+  const token = localStorage.getItem('token');
+
   function handleClick(e: any) {
     e.querySelector().scrollIntoView();
   }
@@ -31,7 +33,13 @@ export function Header({ onOpenLoginModal }: HeaderProps) {
             <NavbarLink to="#projects" onClick={e => handleClick(e)}>AGENDA</NavbarLink>
             <NavbarLink to="#contact" onClick={e => handleClick(e)}>CONTATO</NavbarLink>
 
-            <ButtonLogin type="button" onClick={onOpenLoginModal}>LOGIN</ButtonLogin>
+            {token ? (
+              <span>Olá, {localStorage.getItem('username')?.toUpperCase()}</span>
+            ) :
+              (
+                <ButtonLogin type="button" onClick={onOpenLoginModal}>LOGIN</ButtonLogin>
+              )
+            }
           </LinksContainer>
         </Content>
 
@@ -40,9 +48,17 @@ export function Header({ onOpenLoginModal }: HeaderProps) {
           <NavbarExtendedContainer style={mountedStyle}>
             <NavbarLinkExtended to="#home" onClick={e => handleClick(e)}>HOME</NavbarLinkExtended>
             <NavbarLinkExtended to="#featuredShows" onClick={e => handleClick(e)}>SHOWS</NavbarLinkExtended>
-            <NavbarLinkExtended to="#projects" onClick={e => handleClick(e)}>AGENDA</NavbarLinkExtended>
+            <NavbarLinkExtended to="#agenda" onClick={e => handleClick(e)}>AGENDA</NavbarLinkExtended>
             <NavbarLinkExtended to="#contact" onClick={e => handleClick(e)}>CONTATO</NavbarLinkExtended>
-            <ButtonLogin type="button" onClick={onOpenLoginModal}>LOGIN</ButtonLogin>
+
+            {token ? (
+              <span>Olá, {localStorage.getItem('username')}</span>
+            ) :
+              (
+                <ButtonLogin type="button" onClick={onOpenLoginModal}>LOGIN</ButtonLogin>
+              )
+            }
+
           </NavbarExtendedContainer>
         )}
 

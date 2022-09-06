@@ -2,6 +2,7 @@ import { FormEvent, useState } from 'react';
 import Modal from 'react-modal';
 
 import closeImg from '../../assets/ModalLogin/close.svg';
+import api from '../../services/api';
 
 import { Container } from './styles';
 
@@ -19,7 +20,24 @@ export function ModalLogin({ isOpen, onRequestClose }: ModalLoginProps) {
 
   async function handleLogin(event: FormEvent) {
     event.preventDefault();
-    onRequestClose();
+    const payload = {
+      email, password
+    }
+
+    try {
+      const { data } = await api.post('/auth', payload);
+
+      localStorage.setItem('userId', data.user._id);
+      localStorage.setItem('username', data.user.username);
+      localStorage.setItem('token', data.token);
+
+      window.location.reload();
+      onRequestClose();
+
+    } catch {
+      alert('Aconteceu um erro inesperado. Tente novamente mais tarde.')
+    }
+
   }
 
   return (

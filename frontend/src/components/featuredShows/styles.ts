@@ -76,6 +76,14 @@ export const Card = styled.div`
     font-weight: 400;
     
     &.title {
+      font-size: 1.5rem;
+      align-self: start;
+      color: ${props => props.theme.colors.dark};
+      font-weight: 600;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    &.description {
       font-size: 1rem;
       align-self: start;
       color: ${props => props.theme.colors.dark};
