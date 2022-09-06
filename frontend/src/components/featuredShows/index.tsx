@@ -28,7 +28,7 @@ export function FeaturedShows() {
       setShows(data);
     }
     getShows()
-  }, [])
+  }, [token])
 
   return (
     <Container>
