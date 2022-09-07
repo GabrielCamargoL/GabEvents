@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   margin: 0 auto;
   padding: 10rem 1rem 2rem;
-
+  
   h2 {
     margin-left: 350px;
     
@@ -29,26 +29,39 @@ export const Container = styled.div`
 export const CarouselShows = styled.div`
   margin: 0 auto;
   padding: 3rem 0rem 0rem;
-
+  
   .none {
     display: none;
   }
-`;
+  `;
 
 export const Card = styled.div`
+  cursor: pointer;
   margin-top: 2rem;
   margin-right: 10px;
   max-width: 370px;
   max-height: 650px;
 
+  border-radius: 24px;
+  padding: 1rem;
+
+  &:hover {
+    background-color: rgba(252, 82, 82, 0.1);
+  }
+
+  &:hover div :last-child{
+    color: rgba(252, 82, 82, 1);
+    font-weight: 500;
+  }
+
   @media (max-width: 450px) {
     width: 280px;
   }
-
+  
   display: flex;
   /* justify-content: space-between; */
   flex-direction: column;
-
+  
   div {
     &.card-texts-container {
       padding: 0.5rem 0rem 1.5rem;
@@ -63,7 +76,7 @@ export const Card = styled.div`
     object-fit: cover;
     width: 100%;
     height: 370px;
-
+    
     @media (max-width: 450px) {
       height: 280px;
     }

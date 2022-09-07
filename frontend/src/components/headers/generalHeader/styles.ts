@@ -3,18 +3,16 @@ import styled from "styled-components";
 
 interface ExtendProps {
   extendNavbar: boolean;
+  containerHeight: string
 }
 
 export const Container = styled.header`
-  @media (max-width: 900) {
-    
-  }
-
-  height: ${({ extendNavbar }: ExtendProps) => (extendNavbar ? "100vh" : "570px")};
+  height: ${({ extendNavbar, containerHeight }: ExtendProps) => (extendNavbar ? "100vh" : containerHeight)};
   background-color: ${props => props.theme.colors.blue};
   background-image: url(https://i.imgur.com/v4Z92BD.png);
-  background-position: center;
-  background-repeat: no-repeat;
+  background-position: center center;
+  /* background-repeat: no-repeat; */
+  /* background-size: 100%; */
 
   h1 {
     margin-top: ${({ extendNavbar }: ExtendProps) => (extendNavbar ? "3rem;" : "")};
@@ -174,3 +172,4 @@ export const NavbarExtendedContainer = styled.div`
     }
   }
 `;
+

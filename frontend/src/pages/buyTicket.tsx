@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { FeaturedShows } from "../components/featuredShows";
-import { HomeHeader } from "../components/headers/headerHome";
+import { DetailsTicket } from "../components/detailsTicket";
+import { GeneralHeader } from "../components/headers/generalHeader";
 import { ModalLogin } from "../components/modalLogin";
-import { SearchCategory } from "../components/searchCategory";
 
 
-export function Home() {
+export function BuyTicket() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   function handleOpenLoginModal() {
@@ -18,9 +17,9 @@ export function Home() {
 
   return (
     <>
-      <HomeHeader onOpenLoginModal={handleOpenLoginModal} />
-      <FeaturedShows onOpenLoginModal={handleOpenLoginModal} />
-      <SearchCategory />
+      <GeneralHeader onOpenLoginModal={handleOpenLoginModal} />
+
+      <DetailsTicket />
 
       <ModalLogin
         isOpen={isLoginModalOpen}

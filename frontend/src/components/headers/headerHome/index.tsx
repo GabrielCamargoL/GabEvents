@@ -1,17 +1,18 @@
 import { useState } from 'react';
+import Dropdown from '../../dropdown';
 
-import { ButtonLogin, Container, Content, LinksContainer, NavbarExtendedContainer, NavbarLink, NavbarLinkExtended, OpenLinksButton } from './styles';
-
-const mountedStyle = { animation: "inAnimation 0.6s ease-in" };
+import { Container, ButtonLogin, Content, LinksContainer, NavbarExtendedContainer, NavbarLink, NavbarLinkExtended, OpenLinksButton } from './styles';
 
 interface HeaderProps {
   onOpenLoginModal: () => void;
 }
 
-export function Header({ onOpenLoginModal }: HeaderProps) {
+export function HomeHeader({ onOpenLoginModal }: HeaderProps) {
   const [extendNavbar, setExtendNavbar] = useState(false);
-
   const token = localStorage.getItem('token');
+  const username = localStorage.getItem('username');
+
+  const mountedStyle = { animation: "inAnimation 0.6s ease-in" };
 
   function handleClick(e: any) {
     e.querySelector().scrollIntoView();
@@ -19,7 +20,7 @@ export function Header({ onOpenLoginModal }: HeaderProps) {
 
   return (
     <>
-      <Container extendNavbar={extendNavbar} id='home'>
+      <Container extendNavbar={extendNavbar} containerHeight='570px' id='home'>
         <Content>
           <h2> GabEvents </h2>
 
@@ -28,36 +29,31 @@ export function Header({ onOpenLoginModal }: HeaderProps) {
           </OpenLinksButton>
 
           <LinksContainer>
-            <NavbarLink to="#home" onClick={e => handleClick(e)}>HOME</NavbarLink>
+            <NavbarLink to="/" onClick={e => handleClick(e)}>HOME</NavbarLink>
             <NavbarLink to="#featuredShows" onClick={e => handleClick(e)}>SHOWS</NavbarLink>
-            <NavbarLink to="#projects" onClick={e => handleClick(e)}>AGENDA</NavbarLink>
+            <NavbarLink to="" onClick={e => handleClick(e)}>AGENDA</NavbarLink>
             <NavbarLink to="#contact" onClick={e => handleClick(e)}>CONTATO</NavbarLink>
 
-            {token ? (
-              <span>Olá, {localStorage.getItem('username')?.toUpperCase()}</span>
-            ) :
-              (
-                <ButtonLogin type="button" onClick={onOpenLoginModal}>LOGIN</ButtonLogin>
-              )
+            {token ?
+              <Dropdown name={username} hiddenDropdown={false} />
+              :
+              <ButtonLogin type="button" onClick={onOpenLoginModal}>LOGIN</ButtonLogin>
             }
           </LinksContainer>
         </Content>
 
-
         {extendNavbar && (
           <NavbarExtendedContainer style={mountedStyle}>
-            <NavbarLinkExtended to="#home" onClick={e => handleClick(e)}>HOME</NavbarLinkExtended>
+            {token ?
+              <Dropdown name={username} hiddenDropdown={false} />
+              :
+              <ButtonLogin type="button" onClick={onOpenLoginModal}>LOGIN</ButtonLogin>
+            }
+            <NavbarLinkExtended to="/home" onClick={e => handleClick(e)}>HOME</NavbarLinkExtended>
             <NavbarLinkExtended to="#featuredShows" onClick={e => handleClick(e)}>SHOWS</NavbarLinkExtended>
-            <NavbarLinkExtended to="#agenda" onClick={e => handleClick(e)}>AGENDA</NavbarLinkExtended>
+            <NavbarLinkExtended to="" onClick={e => handleClick(e)}>AGENDA</NavbarLinkExtended>
             <NavbarLinkExtended to="#contact" onClick={e => handleClick(e)}>CONTATO</NavbarLinkExtended>
 
-            {token ? (
-              <span>Olá, {localStorage.getItem('username')}</span>
-            ) :
-              (
-                <ButtonLogin type="button" onClick={onOpenLoginModal}>LOGIN</ButtonLogin>
-              )
-            }
 
           </NavbarExtendedContainer>
         )}

@@ -21,6 +21,5 @@ root.render(
 
       <GlobalStyle />
     </ThemeProvider>
-
   </React.StrictMode>
 );

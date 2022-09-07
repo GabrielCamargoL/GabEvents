@@ -4,7 +4,9 @@ import { Card, CarouselShows, Container } from "./styles";
 import api from '../../services/api';
 // import { showsList } from '../../utils/showsSamples';
 import { responsive } from '../../utils/breakpointsCarousel';
+import { useNavigate } from 'react-router-dom';
 export interface IShow {
+  _id: string;
   title: string;
   description: string;
   hashtags: Array<string>;
@@ -13,22 +15,30 @@ export interface IShow {
   created_at: Date;
 }
 
-export function FeaturedShows() {
+interface IProps {
+  onOpenLoginModal: () => void;
+}
+
+export function FeaturedShows({ onOpenLoginModal }: IProps) {
   const [shows, setShows] = useState<Array<IShow>>([]);
 
   const token = localStorage.getItem('token');
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getShows() {
-      const { data } = await api.get("/shows", {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const { data } = await api.get("/shows");
       setShows(data);
     }
     getShows()
   }, [token])
+
+  function handleShowChoice(id: string) {
+    if (!token) {
+      return onOpenLoginModal();
+    }
+    navigate(`/buyTicket/${id}`, { replace: true });
+  }
 
   return (
     <Container>
@@ -36,24 +46,31 @@ export function FeaturedShows() {
 
       <CarouselShows>
         <Carousel
-          rewind={true}
-          swipeable={true}
-          draggable={true}
-          showDots={true}
+          arrows
+          autoPlaySpeed={4000}
+          autoPlay
+          centerMode={false}
+          draggable
+          focusOnSelect={false}
+          infinite
+          keyBoardControl
+          minimumTouchDrag={80}
+          pauseOnHover
+          renderArrowsWhenDisabled={false}
+          renderButtonGroupOutside={false}
+          renderDotsOutside={false}
           responsive={responsive}
-          ssr={true}
-          infinite={true}
-          autoPlay={true}
-          autoPlaySpeed={5000}
-          keyBoardControl={true}
-          customTransition="all .5"
-          transitionDuration={1000}
-          dotListClass="none"
-          partialVisible
+          rewind={false}
+          rewindWithAnimation={false}
+          rtl={false}
+          shouldResetAutoplay
+          showDots={false}
+          slidesToSlide={1}
+          swipeable
         >
-          {shows.map((show) => {
+          {shows.map((show, key) => {
             return (
-              <Card>
+              <Card key={key} onClick={() => handleShowChoice(show._id)}>
                 <img src={show.imgSrc} alt="" />
 
                 <div className='card-texts-container'>
