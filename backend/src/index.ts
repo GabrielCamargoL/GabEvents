@@ -15,16 +15,16 @@ const PORT = process.env.PORT || 3333;
 const app = express();
 app.use(express.json());
 app.use(routes);
-// app.use(cors({
-//   origin: ['https://gabevents.herokuapp.com', '*'],
-//   methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
-// }));
+app.use(cors({
+  origin: ['https://gabevents.herokuapp.com', '*'],
+  methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH']
+}));
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE,PATCH,UPDATE');
-  app.use(cors());
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE,PATCH,UPDATE');
+//   app.use(cors());
+//   next();
+// });
 
 app.listen(PORT, () => console.log(`🔥 Server started at http://localhost:${PORT}`));
