@@ -7,24 +7,24 @@ import locationIcon from '../../assets/Contacts/location.svg';
 export function Contacts() {
   return (
     <>
-      <Container>
+      <Container id='contact'>
         <ContactsContainer>
 
           <h2>Fale Conosco</h2>
           <h3>Precisa de um help? Podemos te ajudar</h3>
 
           <Row>
-            <img src={phoneIcon} />
+            <img src={phoneIcon} alt="" />
             <h5>(99) 99999 9999</h5>
           </Row>
 
           <Row>
-            <img src={mailIcon} />
+            <img src={mailIcon} alt="" />
             <h5>gabevents@email.com</h5>
           </Row>
 
           <Row>
-            <img src={locationIcon} />
+            <img src={locationIcon} alt="" />
             <h5>Rua endereço - Bairro - Cidade - SP</h5>
           </Row>
 
@@ -49,10 +49,9 @@ export function Contacts() {
           </ColLabelInput>
 
           <ColLabelInput>
-            <span id='message'
-              role="textbox"
-              placeholder="Gabriel da Silva"
-              contentEditable
+            <textarea id='message'
+              placeholder="Escreva aqui sua mensagem"
+
             />
             <label id='message-label' htmlFor="message">Mensagem</label>
           </ColLabelInput>

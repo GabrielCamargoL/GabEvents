@@ -8,6 +8,15 @@ export const Container = styled.div`
   div:first-child{
     padding: 7rem 4rem;
   }
+
+  @media (max-width: 860px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.85fr 1.15fr;
+
+    div:first-child{
+      padding: 4rem 2rem;
+    }
+  }
 `;
 
 export const Row = styled.div`
@@ -57,6 +66,10 @@ export const FormContainer = styled.div`
   flex-direction: column;
   background-color: rgba(34, 34, 34, 0.03);
   padding: 7rem 7rem;
+
+  @media (max-width: 860px) {
+    padding: 3rem 3rem;
+  }
   
   h3 {
     font-size: 24px;
@@ -87,7 +100,7 @@ export const FormContainer = styled.div`
 
   input {
     max-width:  100%;
-    height: 4rem;
+    height: 3rem;
     margin-bottom: 1rem;
     background: none;
     border: none;
@@ -114,17 +127,17 @@ export const FormContainer = styled.div`
     font-weight: 600;
   }
 
-  span:focus + label {
+  textarea:focus + label {
     color: ${props => props.theme.colors.blue};
   }
 
-  span {
-    
+  textarea {
     display: block;
     line-height: 20px;
     
+
+    margin: 1rem 0;
     width:  100%;
-    margin-bottom: 1rem;
     height: auto;
     min-height: 5rem;
     
@@ -138,6 +151,8 @@ export const FormContainer = styled.div`
     overflow: hidden;
     resize: horizontal;
     outline: none;
+
+    
 
     transition: 0.5s;
 
