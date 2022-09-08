@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { ThemeConsumer } from "styled-components";
 
 export const Container = styled.div`
   display: grid;
@@ -19,9 +19,16 @@ export const Container = styled.div`
 `;
 
 export const Row = styled.div`
-  display: flex;
-  flex-direction: row; 
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  justify-content: center;
   margin-top: 10px;
+  gap: 50px;
+`;
+
+export const Col = styled.div`
+  display:flex;
+  flex-direction: column;
 `;
 
 // -----------------------------------------------------------------
@@ -101,6 +108,7 @@ export const FormBuyContainer = styled.form`
 
   input {
     width:  100%;
+    margin-top: 1rem;
     padding: 0 1.5rem;
     height: 4rem;
     border-radius: 0.25rem;
@@ -114,14 +122,10 @@ export const FormBuyContainer = styled.form`
     &::placeholder {
       color: ${props => props.theme.colors.lightRed};
     }
+  }
 
-    & + input {
-      margin-top: 1rem;
-    }
-
-    &.half-input {
-      width:  40%;
-    }
+  label {
+    margin-top: 10px;
   }
 
   button[type="submit"] {
@@ -141,4 +145,34 @@ export const FormBuyContainer = styled.form`
       filter: brightness(0.9);
     }
   }
-`; 
+`;
+
+export const SuccessAnimation = styled.div`
+  #loading_container {
+    z-index: 1;
+    position: absolute;
+
+    background-color: ${props => props.theme.colors.cian};
+    backdrop-filter: blur(1px);
+
+    width: 100%;
+    height: 90vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h2, h3{
+      padding: 0px 30px;
+      color: ${props => props.theme.colors.light};
+      font-family: ${props => props.theme.fonts.Headline} sans-serif;
+      font-weight: 700;
+    }
+  }
+
+div.loading_lottie {
+    max-width: 250px;
+    max-height: 250px;
+  }
+`;

@@ -1,7 +1,12 @@
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+
+import lottie from "lottie-web";
+import success_lottie from '../../assets/lottieSuccess.json';
+
 import api from "../../services/api";
-import { Card, Container, FormBuyContainer, Row } from "./styles";
+import { Card, Col, Container, FormBuyContainer, Row, SuccessAnimation } from "./styles";
+
 
 export interface IShow {
   _id?: string;
@@ -19,10 +24,13 @@ export function DetailsTicket() {
   const [cardNumber, setCardNumber] = useState<string>('');
   const [expirationDate, setExpirationDate] = useState('');
   const [securityCode, setSecurityCode] = useState<string>('');
+  const [success, setSuccess] = useState<boolean>(false);
 
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
   const params = useParams();
+
+  const container = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchShow = async () => {
@@ -41,75 +49,112 @@ export function DetailsTicket() {
     fetchShow();
   }, [token, navigate, params]);
 
+  useEffect(() => {
+    if (success && container.current) {
+      lottie.loadAnimation({
+        container: container.current,
+        renderer: "svg",
+        loop: true,
+        autoplay: true,
+        animationData: success_lottie,
+      });
+    }
+  }, [success]);
+
+
   async function handleBuyTicket(event: FormEvent) {
     event.preventDefault();
-    alert('Compra Realizada com sucesso.')
-    navigate('/', { replace: true });
+    setSuccess(true);
+    setTimeout(() => {
+      navigate('/', { replace: true })
+    }, 5000);
   }
 
   return (
     <>
-      <Container>
-        <div>
-          <h2 id='searchCategory'>Informações do Ingresso</h2>
-          {show ? (
-            <Card>
-              <img src={show?.imgSrc} alt="" />
+      {success ?
+        <SuccessAnimation>
+          <div id="loading_container">
+            <div ref={container} className="loading_lottie" />
+            <h2>Compra Realizada com sucesso!</h2>
+            <h3>Você será redirecionado para a Home.</h3>
+          </div>
 
-              <div className='card-texts-container'>
-                <p className='title'>{show?.title}</p>
-                <p className='description'>{show?.description}</p>
-                <p className='price'>
-                  {show.price ? (new Intl.NumberFormat("pt-BR", {
-                    style: "currency",
-                    currency: "BRL",
-                  }).format(show.price)) : (<></>)}
-                </p>
-                <p className='hashtags'>{show?.hashtags?.map((hashtag) => {
-                  return hashtag + ' ';
-                })}</p>
-              </div>
-            </Card>
-          ) : (<></>)}
-        </div>
+        </SuccessAnimation>
+        :
+        <Container>
+          <div>
+            <h2 id='searchCategory'>Informações do Ingresso</h2>
+            {show ? (
+              <Card>
+                <img src={show?.imgSrc} alt="" />
 
-        <FormBuyContainer onSubmit={(e) => handleBuyTicket(e)}>
-          <h2>Finalizar de Compra</h2>
+                <div className='card-texts-container'>
+                  <p className='title'>{show?.title}</p>
+                  <p className='description'>{show?.description}</p>
+                  <p className='price'>
+                    {show.price ? (new Intl.NumberFormat("pt-BR", {
+                      style: "currency",
+                      currency: "BRL",
+                    }).format(show.price)) : (<></>)}
+                  </p>
+                  <p className='hashtags'>{show?.hashtags?.map((hashtag) => {
+                    return hashtag + ' ';
+                  })}</p>
+                </div>
+              </Card>
+            ) : (<></>)}
+          </div>
 
-          <input
-            placeholder='Email'
-            type='text'
-            value={nameOnCard}
-            onChange={(event) => { setNameOnCard(event.target.value) }}
-          />
+          <FormBuyContainer onSubmit={(e) => handleBuyTicket(e)}>
+            <h2>Finalizar de Compra</h2>
 
-          <input
-            placeholder='9999 9999 9999 9999'
-            type='text'
-            value={cardNumber}
-            onChange={(event) => { setCardNumber(event.target.value) }}
-          />
-
-
-          <Row>
-            <input className="half-input"
-              placeholder='11/28'
+            <label htmlFor="name">Nome no cartão</label>
+            <input
+              id="name"
+              placeholder='Gabriel da Silva'
               type='text'
-              value={expirationDate}
-              onChange={(event) => { setExpirationDate(event.target.value) }}
+              value={nameOnCard}
+              onChange={(event) => { setNameOnCard(event.target.value) }}
             />
 
-            <input className="half-input"
-              placeholder='Senha do Cartão'
-              type='password'
-              value={securityCode}
-              onChange={(event) => { setSecurityCode(event.target.value) }}
+            <label htmlFor="cardNumber">Número do Cartão</label>
+            <input
+              id='cardNumber'
+              placeholder='9999 9999 9999 9999'
+              type='text'
+              value={cardNumber}
+              onChange={(event) => { setCardNumber(event.target.value) }}
             />
-          </Row>
 
-          <button type="submit">Comprar</button>
-        </FormBuyContainer>
-      </Container >
+
+            <Row>
+              <Col>
+                <label htmlFor="expirationDate">Data de Expiração</label>
+                <input
+                  id='expirationDate'
+                  placeholder='11/28'
+                  type='text'
+                  value={expirationDate}
+                  onChange={(event) => { setExpirationDate(event.target.value) }}
+                />
+              </Col>
+              <Col>
+                <label htmlFor="securityCode">CVV</label>
+                <input
+                  id='securityCode'
+                  placeholder='Senha do Cartão'
+                  type='password'
+                  value={securityCode}
+                  onChange={(event) => { setSecurityCode(event.target.value) }}
+                />
+              </Col>
+            </Row>
+
+            <button type="submit">Comprar</button>
+          </FormBuyContainer>
+        </Container >
+      }
     </>
   )
 }
