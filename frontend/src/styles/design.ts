@@ -10,7 +10,7 @@ export const design = {
     'cian': '#84C4FF',
   },
   'fonts': {
-    'Headline': 'Montserrat ,',
-    'body': 'Raleway ,'
+    'Headline': "'Montserrat' ,",
+    'body': "'Raleway' ,"
   }
 }

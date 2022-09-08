@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Contacts } from "../components/contacts";
 import { FeaturedShows } from "../components/featuredShows";
 import { HomeHeader } from "../components/headers/headerHome";
 import { ModalLogin } from "../components/modalLogin";
@@ -21,6 +22,7 @@ export function Home() {
       <HomeHeader onOpenLoginModal={handleOpenLoginModal} />
       <FeaturedShows onOpenLoginModal={handleOpenLoginModal} />
       <SearchCategory />
+      <Contacts />
 
       <ModalLogin
         isOpen={isLoginModalOpen}
