@@ -30,7 +30,7 @@ export function GeneralHeader({ onOpenLoginModal }: HeaderProps) {
 
           <LinksContainer>
             <NavbarLink to="/" onClick={e => handleClick(e)}>HOME</NavbarLink>
-            <NavbarLink to="#featuredShows" onClick={e => handleClick(e)}>SHOWS</NavbarLink>
+            <NavbarLink to="/#featuredShows" onClick={e => handleClick(e)}>SHOWS</NavbarLink>
             <NavbarLink to="" onClick={e => handleClick(e)}>AGENDA</NavbarLink>
             <NavbarLink to="#contact" onClick={e => handleClick(e)}>CONTATO</NavbarLink>
 
