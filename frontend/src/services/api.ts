@@ -4,8 +4,6 @@ import axios from 'axios';
 
 const heroku = 'https://gabevents.herokuapp.com'
 
-const aws = 'http://3.217.88.73:10000'
-
 const api = axios.create({
   baseURL: heroku
 });
