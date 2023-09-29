@@ -6,7 +6,7 @@ dotenv.config();
 import routes from './routes';
 
 async function main() {
-  await mongoose.connect('mongodb+srv://GabrielCamargoL:<password>@gabevents.nh1cbwo.mongodb.net/?retryWrites=true&w=majority');
+  await mongoose.connect(process.env.MONGO_URL);
 }
 main().catch(err => console.log('mongoDB connection error: ' + err));
 
